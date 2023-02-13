@@ -1,4 +1,4 @@
-#ifndef _SHELL_H
+#ifndef _SHELL_H_
 #define _SHELL_H_
 
 #include <stdio.h>
@@ -33,6 +33,7 @@
 
 #define HIST_FILE	".simple_shell_history"
 #define HIST_MAX	4096
+#pragma
 
 extern char **environ;
 
@@ -96,7 +97,7 @@ typedef struct passinfo
 	int histcount;
 } info_t;
 
-#define INFO_INIT\
+#define INFO_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 	0, 0, 0}
 
@@ -233,4 +234,4 @@ int replace_alias(info_t *);
 int replace_vars(info_t *);
 int replace_string(char **, char *);
 
-#endif
+#endif /*SHELL_H_*/

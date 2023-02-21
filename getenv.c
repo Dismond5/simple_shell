@@ -64,7 +64,7 @@ int _setenv(info_t *info, char *var, char *value)
 	char *p;
 
 	if (!var || !value)
-		return (0)
+		return (0);
 
 			buf = malloc(_strlen(var) + _strlen(value) + 2);
 	if (!buf)
@@ -85,7 +85,7 @@ int _setenv(info_t *info, char *var, char *value)
 		}
 		node = node->next;
 	}
-		dd_node_end(&(info->env), buf, 0);
+		add_node_end(&(info->env), buf, 0);
 		free(buf);
 		info->env_changed = 1;
 		return (0);

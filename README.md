@@ -1,1 +1,3 @@
-Simple_Shell Team project
+Simple Shell Team project
+Omar Khaled 
+Adelrhman inbahim

@@ -36,13 +36,13 @@
 
 extern char **environ;
 
+
 /**
  * struct liststr - singly linked list
- * @str: input
- * @num: input
- * @next: input
+ * @num: the number field
+ * @str: a string
+ * @next: points to the next node
  */
-
 typedef struct liststr
 {
 	int num;
@@ -72,7 +72,6 @@ typedef struct liststr
  * @readfd: the fd from which to read line input
  * @histcount: the history line number count
  */
-
 typedef struct passinfo
 {
 	char *arg;
@@ -90,27 +89,27 @@ typedef struct passinfo
 	int env_changed;
 	int status;
 
-	char **cmd_buf;
-	int cmd_buf_type;
+	char **cmd_buf; /* pointer to cmd ; chain buffer, for memory mangement */
+	int cmd_buf_type; /* CMD_type ||, &&, ; */
 	int readfd;
 	int histcount;
 } info_t;
 
 #define INFO_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
-	0, 0, 0}
+		0, 0, 0}
 
 /**
  * struct builtin - contains a builtin string and related function
- * @type: input
- * @func: input
+ * @type: the builtin command flag
+ * @func: the function
  */
-
 typedef struct builtin
 {
 	char *type;
 	int (*func)(info_t *);
 } builtin_table;
+
 
 /* toem_shloop.c */
 int hsh(info_t *, char **);
@@ -233,4 +232,4 @@ int replace_alias(info_t *);
 int replace_vars(info_t *);
 int replace_string(char **, char *);
 
-#endif /*SHELL_H_*/
+#endif

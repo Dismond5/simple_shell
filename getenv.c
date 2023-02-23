@@ -2,10 +2,10 @@
 
 /**
  * get_environ - returns the string array copy of our environ
- * @info: input
- * Return: 0
+ * @info: Structure containing potential arguments. Used to maintain
+ *          constant function prototype.
+ * Return: Always 0
  */
-
 char **get_environ(info_t *info)
 {
 	if (!info->environ || info->env_changed)
@@ -19,11 +19,11 @@ char **get_environ(info_t *info)
 
 /**
  * _unsetenv - Remove an environment variable
- * @info: input
- * Return: 1 or 0
- * @var: input
+ * @info: Structure containing potential arguments. Used to maintain
+ *        constant function prototype.
+ *  Return: 1 on delete, 0 otherwise
+ * @var: the string env var property
  */
-
 int _unsetenv(info_t *info, char *var)
 {
 	list_t *node = info->env;
@@ -50,13 +50,14 @@ int _unsetenv(info_t *info, char *var)
 }
 
 /**
- * _setenv - Initialize a new environment
- * @info: input
- * @var: input
- * @value: input
- * Return: 0
+ * _setenv - Initialize a new environment variable,
+ *             or modify an existing one
+ * @info: Structure containing potential arguments. Used to maintain
+ *        constant function prototype.
+ * @var: the string env var property
+ * @value: the string env var value
+ *  Return: Always 0
  */
-
 int _setenv(info_t *info, char *var, char *value)
 {
 	char *buf = NULL;
@@ -66,7 +67,7 @@ int _setenv(info_t *info, char *var, char *value)
 	if (!var || !value)
 		return (0);
 
-			buf = malloc(_strlen(var) + _strlen(value) + 2);
+	buf = malloc(_strlen(var) + _strlen(value) + 2);
 	if (!buf)
 		return (1);
 	_strcpy(buf, var);
@@ -85,8 +86,8 @@ int _setenv(info_t *info, char *var, char *value)
 		}
 		node = node->next;
 	}
-		add_node_end(&(info->env), buf, 0);
-		free(buf);
-		info->env_changed = 1;
-		return (0);
+	add_node_end(&(info->env), buf, 0);
+	free(buf);
+	info->env_changed = 1;
+	return (0);
 }
